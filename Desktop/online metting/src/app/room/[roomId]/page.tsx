@@ -1,7 +1,7 @@
 "use client"
 
 import { useParams, useSearchParams } from "next/navigation"
-import JitsiVideoRoom from "@/components/JitsiVideoRoom"
+import CaptureMomentsVideoRoom from "@/components/CaptureMomentsVideoRoom"
 
 export default function VideoRoom() {
   const params = useParams()
@@ -33,7 +33,7 @@ export default function VideoRoom() {
   }
 
   return (
-    <JitsiVideoRoom 
+    <CaptureMomentsVideoRoom 
       roomId={roomId}
       userName={userName}
       onLeave={handleLeave}
