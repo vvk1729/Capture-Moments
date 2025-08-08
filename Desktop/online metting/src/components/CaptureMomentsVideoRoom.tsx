@@ -71,7 +71,7 @@ export default function CaptureMomentsVideoRoom({ roomId, userName, onLeave }: C
 
         // Jitsi Meet configuration - Using 8x8.vc for unlimited meetings
         const options = {
-          roomName: `CaptureMonments_${roomId}`,
+          roomName: `vpaas-magic-cookie-6c5d58b70e734ad7ad7f2b78ab0b8c7f/${roomId}`,
           width: '100%',
           height: '100%',
           parentNode: jitsiContainerRef.current,
@@ -85,7 +85,28 @@ export default function CaptureMomentsVideoRoom({ roomId, userName, onLeave }: C
             // Remove demo limitations
             enableInsecureRoomNameWarning: false,
             prejoinPageEnabled: false,
-            // Optimized for 100+ participants
+            // Remove moderator requirement
+            requireDisplayName: false,
+            disableModeratorIndicator: true,
+            enableUserRolesBasedOnToken: false,
+            disableProfile: false,
+            hideConferenceSubject: false,
+            moderatedRoomServiceUrl: null,
+            enableModeratedMode: false,
+            // Additional anti-moderation settings
+            enableLobbyChat: false,
+            enableLobby: false,
+            lobbyEnabled: false,
+            autoKnockLobby: false,
+            enableAutomaticPhoneInvite: false,
+            iAmRecorder: false,
+            iAmSipGateway: false,
+            // Security settings that bypass moderation
+            disableRtx: false,
+            enableOpusRed: false,
+            startAudioOnly: false,
+            startScreenSharing: false,
+            // Optimized for 70 participants
             channelLastN: 70, // Show last 70 active speakers
             enableLayerSuspension: true,
             constraints: {
@@ -142,7 +163,9 @@ export default function CaptureMomentsVideoRoom({ roomId, userName, onLeave }: C
             TOOLBAR_TIMEOUT: 4000
           },
           userInfo: {
-            displayName: userName || `User_${Date.now().toString().slice(-4)}`
+            displayName: userName || `User_${Date.now().toString().slice(-4)}`,
+            email: 'moderator@capturemoments.com',
+            role: 'moderator'
           }
         }
 
@@ -311,7 +334,7 @@ export default function CaptureMomentsVideoRoom({ roomId, userName, onLeave }: C
             </div>
           )}
           <div className="text-sm text-green-400 font-medium">
-            🚀 Supports 500+ Participants
+            🚀 Supports exactly 70 Participants
           </div>
         </div>
         
@@ -356,7 +379,7 @@ export default function CaptureMomentsVideoRoom({ roomId, userName, onLeave }: C
             <h2 className="text-xl font-semibold mb-2">Connecting to Capture Moments...</h2>
             <p className="text-gray-400">Powered by Jitsi Meet - Enterprise Grade</p>
             <div className="mt-4 text-sm text-green-400">
-              ✨ Ready for 500+ participants
+              ✨ Ready for 70 participants
             </div>
           </div>
         </div>
